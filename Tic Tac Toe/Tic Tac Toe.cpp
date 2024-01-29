@@ -103,12 +103,19 @@ char getNextPlayer(char currentPlayer) {
     return PLAYER_CELL;
 }
 void getWritedPosition(int* xPointer, int* yPointer) {
-    cout << "X position: ";
-    cin >> *xPointer;
-    *xPointer -= INDEX_BORDER_OFFSET;
-    cout << "Y position: ";
-    cin >> *yPointer;
-    *yPointer -= INDEX_BORDER_OFFSET;
+    int x = 0;
+    do {
+        cout << "X position: ";
+        cin >> x;
+    } while (x < INDEX_BORDER_OFFSET || x > BOARD_SIZE);
+    *xPointer =  x - INDEX_BORDER_OFFSET;
+
+    int y = 0;
+    do {
+        cout << "Y position: ";
+        cin >> y;
+    } while (y < INDEX_BORDER_OFFSET || y > BOARD_SIZE);
+    *yPointer = y - INDEX_BORDER_OFFSET;
 }
 int calculateMax(int value, int minimax) {
     if (value > minimax)
